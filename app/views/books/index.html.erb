@@ -4,33 +4,34 @@
 <h1>Boooks</h1>
 <table>
   <thead>
+    <tr>
     <th>Title</th>
     <th>Body</th>
     <th colspan="3"></th>
+    </tr>
     </thead>
     <tbody>
       <% @books.each do |book| %>
+      <tr>
       <td>
-        <span>
-        <%= book.title %>
-        </span>
+        <span><%= book.title %></span>
         </td>
       <td>
-        <span>
-        <%= book.body %>
-        </span>
+        <span><%= book.body %></span>
         </td>
         <td>
-          <span>
-            <%= link_to "show", book_path(book.id) %>
-          </span>
+          <span><%= link_to "Show", book_path(book.id) %></span>
         </td>
         <td>
-            <%= link_to "edit", edit_book_path(book.id) %>
+            <%= link_to "Edit", edit_book_path(book.id) %>
         </td>
+        <td>
+          <%= link_to "Destroy", book_path(book.id), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+        </td>
+        </tr>
         <% end %>
-
     </tbody>
+    </table>
 
     <h2>New book</h2>
     <%= form_with model: @book, url: '/books', method: :post do |f| %>
@@ -43,5 +44,4 @@
 
     <%= f.submit 'Create Book' %>
     <% end %>
-</table>
 </body>
