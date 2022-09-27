@@ -1,8 +1,21 @@
-<p>title: <%= @book.title %></p>
+<body>
+<p class="text-success">
+  <%= flash[:notice] %>
+  <%= flash[:updated] %>
+</p>
+<p>
+  <strong>title: </strong>
+   <%= @book.title %>
+  </p>
 
-<p>body: <%= @book.body %></p>
+<p>
+  <strong>body: </strong>
+   <%= @book.body %>
+  </p>
 
 <table>
-  <th><%= link_to "Edit", edit_book_path(@book.id) %></th>
-  <th><%= link_to "Back", books_path %></th>
+   <td><%= link_to "Edit", edit_book_path(@book.id), :style=>"color:black;" %></td>
+  <td>|</td>
+   <td><%= link_to "Back", books_path, :style=>"color:black;" %></td>
 </table>
+</body>

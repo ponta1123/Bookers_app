@@ -1,4 +1,12 @@
+<html>
+  <head>
+
+  </head>
+
 <body>
+  <p class="text-success">
+    <%= flash[:alret] %>
+    </p>
 <h1>Boooks</h1>
 <table>
   <thead>
@@ -18,13 +26,13 @@
         <span><%= book.body %></span>
         </td>
         <td>
-          <span><%= link_to "Show", book_path(book.id) %></span>
+          <span><%= link_to "Show", book_path(book.id), :style=>"color:black;" %></span>
         </td>
         <td>
-            <%= link_to "Edit", edit_book_path(book.id) %>
+            <%= link_to "Edit", edit_book_path(book.id), :style=>"color:black;" %>
         </td>
         <td>
-          <%= link_to "Destroy", book_path(book.id), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+          <%= link_to "Destroy", book_path(book.id), method: :delete, data: {confirm: "本当に削除しますか？"}, :style=>"color:black;" %>
         </td>
         </tr>
       <% end %>
@@ -32,9 +40,9 @@
     </table>
 
     <h2>New book</h2>
-    
+
     <% if @book.errors.any? %>
-     <%= @book.errors.count %>件のエラーが発生しました
+     <%= @book.errors.count %>件のerrorが発生しました
      <ul>
        <% @book.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -44,14 +52,23 @@
 
     <%= form_with model: @book, url: '/books', method: :post do |f| %>
 
-    <h4>Title</h4>
-    <%= f.text_field :title %>
+    <div class="field">
+      <label for="title">Title</label>
+       <div class="title_text">
+        <%= f.text_field :title %>
+        </div>
+      </div>
 
-    <h4>Body</h4>
-    <%= f.text_area :body %>
+    <div class="field">
+      <label for="body">Body</label>
+       <div class="body_text">
+        <%= f.text_area :body %>
+        </div>
+      </div>
 
     <div class="field">
     <%= f.submit 'Create Book' %>
     </div>
     <% end %>
 </body>
+</html>
